@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
+import 'package:go_for_israel/page/LoginPage.dart';
 
-void main() => runApp(App());
+void main(){
+  BlocSupervisor().delegate = SimpleBlocDelegate();
+  runApp(App());
+}
+
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onTransition(Transition transition) {
+    print(transition);
+  }
+}
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: StartPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class StartPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _StartPageState createState() => _StartPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Container(),
-    ));
+    return LoginPage();
   }
 }
