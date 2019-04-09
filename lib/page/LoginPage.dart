@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_for_israel/page/AgendaPage.dart';
+import 'package:go_for_israel/page/NavigatorPage.dart';
 import 'package:go_for_israel/page/RegistrationPage.dart';
 import 'package:go_for_israel/utils/Strings.dart';
 
@@ -76,7 +78,12 @@ class _LoginPageState extends State<LoginPage> {
                               width: 300.0,
                               height: 40.0,
                               child:RaisedButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    Navigator.push(
+                                        context, MaterialPageRoute(
+                                      builder: (context) => NavigatorPage(),
+                                    ));
+                                  },
                                   color: Colors.blue[400],
                                   child:
                                   Text(Strings.SIGN_IN,
@@ -114,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                   )
                               )),
                           SizedBox(height: 10),
-                          Text("By creating an account you agree to our Terms of Service and Privacy Policy",
+                          Text(Strings.REGULATION,
                             maxLines: 2,
                             textAlign: TextAlign.center,
                             style: TextStyle(
