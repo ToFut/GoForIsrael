@@ -5,6 +5,7 @@ import 'package:go_for_israel/utils/HexColor.dart';
 
 class IsraelColors{
   static Color mainColor = HexColor("#ff194272");
+  static Color loginPageSignInColor = HexColor("#194171");
   static Color mainTextColor = HexColor("#4699f4");
   static Color bottomAppBarTextColor = HexColor("#5e7b9c");
   static Color profileBackgroundColor = HexColor("#f2f9fe");
@@ -16,4 +17,8 @@ class IsraelColors{
   static Color sheduleColorDark = HexColor("#ddeefa");
   static Color companiesTextColor = HexColor("#95a5a6");
   static Color companiesCEOname = HexColor("#194272");
+  static Color editFieldBorderColor = HexColor("#828899");
+  static Color editFieldFillerColor = HexColor("#f6f6f6");
+  static Color editFieldTextColor = HexColor("#202124");
+
 }

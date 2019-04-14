@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:go_for_israel/page/LoginPage.dart';
+import 'package:go_for_israel/page/splash/SplashPage.dart';
 
 void main(){
   BlocSupervisor().delegate = SimpleBlocDelegate();
@@ -32,6 +32,6 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return SplashPage();
   }
 }

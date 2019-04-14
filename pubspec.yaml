@@ -24,6 +24,7 @@ dependencies:
   meta: ^1.1.6
   flutter_linkedin_login: ^2.4.0
   image_picker: 0.5.2
+  http: ^0.12.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -46,44 +47,23 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/image_background_login.png
-    - assets/logo.png
-    - assets/partner_login.png
-    - assets/wachat_icon.png
-    - assets/icon_ent.png
+    - assets/splash_screen.png
+    - assets/background_login.png
+    - assets/icon_two_step_not_active.png
+    - assets/icon_three_step_not_active.png
+    - assets/icon_two_step_active.png
+    - assets/icon_first_step_active.png
+    - assets/icon_three_step_active.png
+    - assets/icon_succes_step.png
+    - assets/arrow_back_not_active.png
+    - assets/arrow_back_active.png
+    - assets/arrow_next_active.png
+    - assets/icon_finish_step.png
+    - assets/icon_add_photo_on_two_step.png
     - assets/linkedin_icon.png
-    - assets/profile_icon.png
-    - assets/agenda.png
-    - assets/app_bar_icon.png
-    - assets/conferense_book.png
-    - assets/conpanies.png
-    - assets/more.png
-    - assets/my_shedule.png
-    - assets/my_shendule_icon.png
-    - assets/app_bar_name.png
-    - assets/contact_support.png
-    - assets/add_to_my_shendule.png
-    - assets/setting_icon.png
-    - assets/icon_calendar.png
-    - assets/conference.png
-    - assets/icon_close.png
-    - assets/icon_chat.png
-    - assets/icon_time.png
-    - assets/icon_group.png
-    - assets/contact_organaizer.png
-    - assets/conferense_guide.png
-    - assets/sponsores_icon.png
-    - assets/1_sponsores.png
-    - assets/2_sponsores.png
-    - assets/3_sponsores.png
-    - assets/4_sponsores.png
-    - assets/5_sponsores.png
-    - assets/6_sponsores.png
-    - assets/companies_logo.png
-    - assets/facebook_icon.png
-    - assets/twitter_icon.png
-    - assets/web_icon.png
-
+    - assets/profile_photo_icon.png
+    - assets/wachat_icon.png
+    - assets/background_city.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
