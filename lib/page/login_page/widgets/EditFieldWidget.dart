@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_for_israel/utils/IsraelColors.dart';
 
 class EditFieldWidget {
-  TextEditingController _contoller;
+  TextEditingController _contoller = TextEditingController();
 
   Widget getField({@required String title, @required String hint}) {
     return Column(

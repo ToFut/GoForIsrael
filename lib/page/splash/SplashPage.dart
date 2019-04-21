@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_for_israel/base/SharedPrefModule.dart';
+import 'package:go_for_israel/model/UserModel.dart';
 import 'package:go_for_israel/page/login_page/LoginPage.dart';
 import 'package:go_for_israel/utils/Router.dart';
 
@@ -32,7 +34,8 @@ void dispose() {
   super.dispose();
 }
 
-_startTimer(BuildContext context) {
+_startTimer(BuildContext context) async{
+  //UserModel user = await SharedPrefModule.getUserModel();
   timer = Timer(Duration(seconds: 2), () {
     Navigator.pushReplacement(context, Router(
       builder: (context) => LoginPage(),

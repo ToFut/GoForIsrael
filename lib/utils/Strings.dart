@@ -16,7 +16,7 @@ class Strings {
   static final CHAT = "Chat";
   static final NEW_MEETING = "New Meeting";
   static final GALLERY = "Gallery";
-  static final CANSEL = "Cansel";
+  static final CANSEL = "Cancel";
   static final DONE = "Done";
   static final STEP = "Step 1/3";
   static final TITLE = "Title";
@@ -51,6 +51,7 @@ class Strings {
   static final ADD_MY_SCHEDULE = "Add to My Schedule";
   static final SETTING = "Setting";
   static final CONTACT_SUPPORT = "Contact Support";
+  static final REQUIRED_FIELDS_NOT_FILLED = "Required fields are not filled.";
   static final TEXT_FOR_AGENDA = "Edouard Cukierman, Chairman - Cukieerman & Co. Investment House "
       "Dr. Laurent Choppe, Managing Partner - Cukierman & Co. Life Sciencec Yair Shiran, Minister of Commercial "
       "Affairs and Deputy Permanent Representative of Israel to the WTO - Geneva, Switzerland Dr. Ami Appelbaum, "

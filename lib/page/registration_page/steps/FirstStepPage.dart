@@ -1,18 +1,34 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:go_for_israel/event/RegistrationEvent.dart';
 import 'package:go_for_israel/page/login_page/widgets/EditFieldWidget.dart';
+import 'package:go_for_israel/page/registration_page/RegistrationBloc.dart';
 import 'package:go_for_israel/page/registration_page/RegistrationPage.dart';
 import 'package:go_for_israel/utils/IsraelColors.dart';
+import 'package:go_for_israel/utils/Strings.dart';
+import 'package:image_picker/image_picker.dart';
 
 class FirstStepPage extends StatefulWidget {
+  RegistrationPageState _registrationPage;
+  RegistrationBloc bloc;
+
   @override
-  _FirstStepPageState createState() => _FirstStepPageState();
+  _FirstStepPageState createState() => _FirstStepPageState(_registrationPage, bloc);
+
+  FirstStepPage(this._registrationPage, this.bloc);
 }
 
 class _FirstStepPageState extends State<FirstStepPage> {
+  String avatar = "";
+  File file_avatar;
   int _radio = 0;
   int initValueField = 0;
   int initValueCountry = 0;
   EditFieldWidget _companyName;
+  RegistrationPageState _registrationPage;
+  RegistrationBloc _bloc;
+  _FirstStepPageState(this._registrationPage, this._bloc);
 
   void initState() {
     _companyName = EditFieldWidget();
@@ -24,7 +40,18 @@ class _FirstStepPageState extends State<FirstStepPage> {
     return Container(
         child: Column(children: <Widget>[
       Row(children: <Widget>[
-        Image.asset("assets/profile_photo_icon.png", width: 100, height: 100),
+        GestureDetector(
+          child:Container(child: avatar.isEmpty
+              ? Image.asset("assets/profile_photo_icon.png", width: 100, height: 100)
+              : CircleAvatar(backgroundImage: Image.file(File(avatar)).image, radius: 50)),
+          onTap: () {
+            showTakePhotoDialog(context).then((file) {
+              setState(() {
+                avatar = file.path;
+              });
+            });
+          },
+        ),
         SizedBox(width: 5),
         Column(children: <Widget>[
           Text("Import Profile From",
@@ -92,16 +119,59 @@ class _FirstStepPageState extends State<FirstStepPage> {
           child: getDropDown(context, false, title: "FIELD*")),
       Container(
           padding: EdgeInsets.only(bottom: 20),
-          child: getDropDown(context, true, title: "COUNTRY*"))
+          child: getDropDown(context, true, title: "COUNTRY*")),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Spacer(),
+          Image.asset("assets/arrow_back_not_active.png", height: 36, width: 57),
+          Spacer(),
+          GestureDetector(onTap: (){
+            if(_companyName.contoller.text.isEmpty) {
+              Scaffold.of(context).showSnackBar(SnackBar(content: Text(Strings.REQUIRED_FIELDS_NOT_FILLED)));
+              return;
+            }
+            _bloc.dispatch(RegistrationSaveUserFirstStepEvent(
+                _companyName.contoller.text,
+                RegistrationPage.isInvestor,
+                initValueField.toString(),
+                initValueCountry.toString(),
+                avatar));
+            _registrationPage.next();
+          }, child:Image.asset("assets/arrow_next_active.png", height: 36, width: 57)),
+          Spacer()
+        ],
+      ),
     ]));
+  }
+
+  getImageCamera() async{
+    Navigator.pop(context);
+    var camera = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      avatar = camera.path;
+    });
+  }
+
+  Future getImageGallery() async{
+    Navigator.pop(context);
+    var gallery = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      avatar = gallery.path;
+    });
   }
 
   Widget getDropDown(BuildContext context, bool isCountry,
       {@required String title}) {
-    List<DropdownMenuItem<int>> items = [
-      DropdownMenuItem(value: 0, child: Container(child: Text("Select1 value"), width: 150)),
-      DropdownMenuItem(value: 1, child: Container(child: Text("Select2 value"), width: 150)),
-      DropdownMenuItem(value: 2, child: Container(child: Text("Select3 value"), width: 150))
+    List<DropdownMenuItem<int>> itemsFields = [
+      DropdownMenuItem(value: 0, child: Container(child: Text("Select1 fields"), width: 150)),
+      DropdownMenuItem(value: 1, child: Container(child: Text("Select2 fields"), width: 150)),
+      DropdownMenuItem(value: 2, child: Container(child: Text("Select3 fields"), width: 150))
+    ];
+    List<DropdownMenuItem<int>> itemsCountry = [
+      DropdownMenuItem(value: 0, child: Container(child: Text("Select1 country"), width: 150)),
+      DropdownMenuItem(value: 1, child: Container(child: Text("Select2 country"), width: 150)),
+      DropdownMenuItem(value: 2, child: Container(child: Text("Select3 country"), width: 150))
     ];
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +197,7 @@ class _FirstStepPageState extends State<FirstStepPage> {
                         hint: Text("Select"),
                         iconSize: 0,
                         value: isCountry ? initValueCountry : initValueField,
-                        items: items,
+                        items: isCountry ? itemsCountry : itemsFields,
                         onChanged: (item) {
                           setState(() {
                             isCountry
