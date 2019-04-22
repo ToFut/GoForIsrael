@@ -85,11 +85,13 @@ class RegistrationPageState extends State<RegistrationPage> {
                               fontWeight: FontWeight.w600
                           )),
                           Spacer(),
-                          Text(Strings.DONE,style: TextStyle(
+                          GestureDetector(child: Text(Strings.DONE,style: TextStyle(
                               color: Colors.white,
                               fontSize: 17,
                               fontWeight: FontWeight.w600
-                          ))
+                          )), onTap: () {
+
+                          })
                         ]),
                         SingleChildScrollView(child: Container(
                             alignment: Alignment.center,

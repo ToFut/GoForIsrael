@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_for_israel/bloc/LoginBloc.dart';
 import 'package:go_for_israel/event/LoginEvent.dart';
 import 'package:go_for_israel/page/login_page/widgets/EditFieldWidget.dart';
-import 'package:go_for_israel/page/registration_page/RegistrationPage.dart';
 import 'package:go_for_israel/repository/LoginRepository.dart';
 import 'package:go_for_israel/state/LoginState.dart';
 import 'package:go_for_israel/utils/IsraelColors.dart';
@@ -100,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 ]),
                                                 Spacer(),
                                                 FlatButton(
-                                                    onPressed: () {},
+                                                    onPressed: (){
+                                                    },
                                                     child: Text(Strings.FORGOT_YOUR_PASSWORD,
                                                         style: TextStyle(
                                                             color: IsraelColors

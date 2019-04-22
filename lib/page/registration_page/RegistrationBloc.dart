@@ -50,7 +50,6 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       await SharedPrefModule.saveUser(user);
       await repository.registration(user);
       Navigator.pushReplacement(event.context, Router(builder: (context) => NavigatorPage()));
-      //yield RegistrationHideState();
     }
   }
 

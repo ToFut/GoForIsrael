@@ -87,24 +87,7 @@ class _ThreeStepPageState extends State<ThreeStepPage> {
           }, child: Image.asset("assets/arrow_back_active.png", height: 36, width: 57)),
           Spacer(),
           GestureDetector(onTap: (){
-            if(RegistrationPage.isInvestor) {
-              if(stag.contoller.text.isEmpty) {
-              Scaffold.of(context).showSnackBar(SnackBar(content: Text(Strings.REQUIRED_FIELDS_NOT_FILLED)));
-              return;
-              }
-                _bloc.dispatch(RegistrationSaveUserThreeStepEvent(
-                    stag.contoller.text,
-                    stag.contoller.text,
-                    raising.contoller.text,
-                    raising.contoller.text,
-                    _choise, _email, _password, context));
-            } else {
-              if(stag.contoller.text.isEmpty) {
-                Scaffold.of(context).showSnackBar(SnackBar(content: Text(Strings.REQUIRED_FIELDS_NOT_FILLED)));
-                return;
-              }
-              _bloc.dispatch(RegistrationSaveUserThreeStepEvent(stag.contoller.text, stag.contoller.text, raising.contoller.text, null, _choise, _email, _password, context));
-            }
+            registrationFinalStep();
           }, child:Image.asset("assets/icon_finish_step.png", height: 36, width: 57)),
           Spacer()
         ],
@@ -177,5 +160,26 @@ class _ThreeStepPageState extends State<ThreeStepPage> {
             ]
         )
     );
+  }
+
+  void registrationFinalStep() {
+    if(RegistrationPage.isInvestor) {
+      if(stag.contoller.text.isEmpty) {
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(Strings.REQUIRED_FIELDS_NOT_FILLED)));
+        return;
+      }
+      _bloc.dispatch(RegistrationSaveUserThreeStepEvent(
+          stag.contoller.text,
+          stag.contoller.text,
+          raising.contoller.text,
+          raising.contoller.text,
+          _choise, _email, _password, context));
+    } else {
+      if(stag.contoller.text.isEmpty) {
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(Strings.REQUIRED_FIELDS_NOT_FILLED)));
+        return;
+      }
+      _bloc.dispatch(RegistrationSaveUserThreeStepEvent(stag.contoller.text, stag.contoller.text, raising.contoller.text, null, _choise, _email, _password, context));
+    }
   }
 }

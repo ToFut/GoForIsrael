@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:go_for_israel/page/login_page/widgets/EditFieldWidget.dart';
 import 'package:go_for_israel/page/registration_page/RegistrationBloc.dart';
@@ -93,6 +94,7 @@ class _TwoStepPageState extends State<TwoStepPage> {
                     iconSize: 40,
                     icon: Image.asset(pager == null ? "assets/icon_add_photo_on_two_step.png" : "assets/icon_finish_step.png"),
                     onPressed:() async{
+                      pager = await FilePicker.getFile(type: FileType.CUSTOM, fileExtension: 'pdf');
                     }),
                 Text("Add one pager",style: TextStyle(fontSize: 12))
               ])
